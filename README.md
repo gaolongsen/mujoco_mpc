@@ -56,6 +56,15 @@ You will need [CMake](https://cmake.org/) and a working C++20 compiler to build 
 Additionally, install [Xcode](https://developer.apple.com/xcode/).
 
 ### Ubuntu
+
+1. if you don't have any issues for download problem, follow the ***installation, step 1***
+2. Go into the main project, open the terminal and then use `camke .` to compile the project.
+3. You need to wait for a while and ignore any warnings or errors from the terminal.
+4. After the last step finished, you need to change several files to avoid some fatal ans suck errors when you compile the whole probject:
+   1. Go to **mujoco_mpc/cmake/MpcOptions.cmake** and **/home/wam/mujoco_mpc/_deps/mujoco-build/CMakeFiles/mujoco.dir/flags.make**, Comment or remove all `-Werror` variable to make sure even there are some warnings happen, you can also compile the project. 
+   2. Go to **mujoco_mpc/mjpc/agent.cc**  and add **`(struct mjuiDef_)`** in `line 366`, `line 386` and `line 389` to make sure that no errors occur during the assignment of structure variables.
+5. Then you input `cmake --build .` on the terminal and need to wait for a long while until the project compile finishing. (around 10 min in my PC).
+
 Additionally, install:
 ```shell
 sudo apt-get install libgl1-mesa-dev libxinerama-dev libxcursor-dev libxrandr-dev libxi-dev ninja-build
