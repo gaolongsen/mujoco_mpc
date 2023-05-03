@@ -363,7 +363,7 @@ void Agent::GUI(mjUI& ui) {
     mjuiDef defNormWeight[kMaxCostTerms + 1];
     for (int i = 0; i < ActiveTask()->num_term; i++) {
       // element
-      defNormWeight[i] = {mjITEM_SLIDERNUM, "weight", 2,
+      defNormWeight[i] = (struct mjuiDef_){mjITEM_SLIDERNUM, "weight", 2,
                           DataAt(ActiveTask()->weight, i), "0 1"};
 
       // name
@@ -383,10 +383,10 @@ void Agent::GUI(mjUI& ui) {
   int parameter_shift = (ActiveTask()->parameters.empty() ? 0 : 1);
   mjuiDef defFeatureParameters[kMaxCostTerms + 2];
   if (parameter_shift > 0) {
-    defFeatureParameters[0] = {mjITEM_SEPARATOR, "Parameters", 1};
+    defFeatureParameters[0] = (struct mjuiDef_){mjITEM_SEPARATOR, "Parameters", 1};
   }
   for (int i = 0; i < ActiveTask()->parameters.size(); i++) {
-    defFeatureParameters[i + parameter_shift] = {
+    defFeatureParameters[i + parameter_shift] = (struct mjuiDef_){
         mjITEM_SLIDERNUM, "residual", 2, DataAt(ActiveTask()->parameters, i),
         "0 1"};
   }
